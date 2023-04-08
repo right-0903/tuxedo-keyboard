@@ -41,6 +41,7 @@ MODULE_NAME := $(shell sed -n 's/^PACKAGE_NAME=\([^\n]*\)/\1/p' dkms.conf 2>&1 /
 dkmsinstall:
 	cp -R . /usr/src/$(MODULE_NAME)-$(VER)
 	dkms install -m $(MODULE_NAME) -v $(VER)
+	rm /usr/lib/modules/$(shell uname -r)/updates/dkms/clevo_*
 
 dkmsremove:
 	dkms remove -m $(MODULE_NAME) -v $(VER) --all

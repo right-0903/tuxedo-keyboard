@@ -130,7 +130,8 @@ void uw_id_tdp(void)
 	} else if (dmi_match(DMI_PRODUCT_SKU, "POLARIS1XI02")) {
 		tdp_min_defs = tdp_min_gmxmgxx;
 		tdp_max_defs = tdp_max_gmxmgxx;
-	} else if (dmi_match(DMI_PRODUCT_SKU, "POLARIS1XI03")
+	} else if (dmi_match(DMI_PRODUCT_SKU, "BKC71FBFU6000")
+		|| dmi_match(DMI_PRODUCT_SKU, "POLARIS1XI03")
 		|| dmi_match(DMI_PRODUCT_SKU, "STELLARIS1XI03")) {
 		tdp_min_defs = tdp_min_gmxtgxx;
 		tdp_max_defs = tdp_max_gmxtgxx;
@@ -342,7 +343,10 @@ static u32 uw_set_fan(u32 fan_index, u8 fan_speed)
 	u16 addr_cpu_custom_fan_table_fan_speed = 0x0f20;
 	u16 addr_gpu_custom_fan_table_fan_speed = 0x0f50;
 
-	if (uw_feats->uniwill_has_universal_ec_fan_control) {
+	// u16 addr_cpu_custom_fan_table_fan_speed = 0x1804;
+	// u16 addr_gpu_custom_fan_table_fan_speed = 0x1809;
+
+	if (!uw_feats->uniwill_has_universal_ec_fan_control) {
 		uw_init_fan();
 
 		if (fan_index == 0)

@@ -633,6 +633,7 @@ static int uw_has_charging_priority(bool *status)
 	int result;
 
 	bool not_supported_device = false
+		|| dmi_match(DMI_BOARD_NAME, "LAPKC71F")
 		|| dmi_match(DMI_BOARD_NAME, "PF5PU1G")
 		|| dmi_match(DMI_BOARD_NAME, "LAPQC71A")
 		|| dmi_match(DMI_BOARD_NAME, "LAPQC71B")
@@ -748,6 +749,7 @@ static int uw_has_charging_profile(bool *status)
 	int result;
 
 	bool not_supported_device = false
+		|| dmi_match(DMI_BOARD_NAME, "LAPKC71F")
 		|| dmi_match(DMI_BOARD_NAME, "PF5PU1G")
 		|| dmi_match(DMI_BOARD_NAME, "LAPQC71A")
 		|| dmi_match(DMI_BOARD_NAME, "LAPQC71B")
@@ -1014,6 +1016,7 @@ struct uniwill_device_features_t *uniwill_get_device_features(void)
 	uw_feats->uniwill_profile_v1_three_profs_leds_only = false
 	// Devices where profile mainly controls power profile LED status
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 18, 0)
+		|| dmi_match(DMI_PRODUCT_SKU, "BKC71FBFU6000")
 		|| dmi_match(DMI_PRODUCT_SKU, "POLARIS1XA02")
 		|| dmi_match(DMI_PRODUCT_SKU, "POLARIS1XI02")
 		|| dmi_match(DMI_PRODUCT_SKU, "POLARIS1XA03")
