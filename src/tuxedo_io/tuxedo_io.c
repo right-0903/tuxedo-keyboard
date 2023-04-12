@@ -340,13 +340,13 @@ static u32 uw_set_fan(u32 fan_index, u8 fan_speed)
 	u16 addr_fan1 = 0x1809;
 	u16 addr_for_fan;
 
-	u16 addr_cpu_custom_fan_table_fan_speed = 0x0f20;
-	u16 addr_gpu_custom_fan_table_fan_speed = 0x0f50;
+	// u16 addr_cpu_custom_fan_table_fan_speed = 0x0f20;
+	// u16 addr_gpu_custom_fan_table_fan_speed = 0x0f50;
 
-	// u16 addr_cpu_custom_fan_table_fan_speed = 0x1804;
-	// u16 addr_gpu_custom_fan_table_fan_speed = 0x1809;
+	u16 addr_cpu_custom_fan_table_fan_speed = 0x1804;
+	u16 addr_gpu_custom_fan_table_fan_speed = 0x1809;
 
-	if (!uw_feats->uniwill_has_universal_ec_fan_control) {
+	if (uw_feats->uniwill_has_universal_ec_fan_control) {
 		uw_init_fan();
 
 		if (fan_index == 0)
